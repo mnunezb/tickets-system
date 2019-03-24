@@ -16,7 +16,7 @@ export default class Server {
   }
 
   config(): void {
-    this.app.set("port", process.env.PORT);
+    this.app.set("port", <string>process.env.PORT);
     this.app.use(express.json());
     this.app.use(express.urlencoded({ extended: false }));
   }

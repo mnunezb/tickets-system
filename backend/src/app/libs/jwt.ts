@@ -11,7 +11,7 @@ export class Auth {
       userRole: user.userRole
     };
 
-    return jwt.sign(payload, `${process.env.SECRET}`, {
+    return jwt.sign(payload, <string>process.env.SECRET, {
       expiresIn: "720h"
     });
   }
@@ -23,7 +23,7 @@ export class Auth {
 
     //Try to validate the token and get data
     try {
-      jwtPayload = <any>jwt.verify(token, `${process.env.SECRET}`);
+      jwtPayload = <any>jwt.verify(token, <string>process.env.SECRET);
       res.locals.jwtPayload = jwtPayload;
     } catch (error) {
       //If token is not valid, respond with 401 (unauthorized)
