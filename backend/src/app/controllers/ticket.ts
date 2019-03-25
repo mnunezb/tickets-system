@@ -6,7 +6,13 @@ class TicketController {
 
   public async getTickets(req: Request, res: Response) {
     try {
-      const tickets = await TicketModel.find();
+      const tickets = await TicketModel.find()
+        .populate({ path: "state" })
+        .populate({ path: "services" })
+        .populate({ path: "technical" })
+        .populate({ path: "createdBy" })
+        .populate({ path: "updatedBy" });
+
       res.json({ tickets });
     } catch (error) {
       return res.status(500).json({ error: error });

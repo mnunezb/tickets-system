@@ -1,0 +1,81 @@
+<div class="admin-panel container">
+<div class="clearfix">
+  <h2>Sistema de Tickets</h2>
+  <button type="button" class="btn btn-secondary btn-lg" [routerLink]="[ '/ticket-add' ]">Crear Ticket</button>
+<table class="table">
+  <thead class="thead-dark">
+    <tr>
+      <th scope="col">ID</th>
+      <th scope="col">Costo UF</th>
+      <th scope="col">Costo CLP</th>
+      <th scope="col">Fecha creación</th>
+      <th scope="col">Técnico asociado</th>
+      <th scope="col">Estado</th>
+      <th scope="col">Detalle Servicios</th>
+      <th scope="col">Editar</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let ticket of tickets">
+      <th scope="row">{{ticket._id}}</th>
+      <td>{{sumUf(ticket)}}</td>
+      <td>$100.918</td>
+      <td>{{ticket.createdAt}}</td>
+      <td>{{ticket.technical.name}} {{ticket.technical.lastName}}</td>
+      <!-- <td>{{ticket.state.name}}</td> -->
+      <td *ngIf="ticket.state.name == 'PENDING'"><button type="button" class="btn btn-outline-secondary" data-toggle="modal" data-target="#modal-change-state">{{ticket.state.name}}</button></td>
+      <td><button type="button" class="btn" data-toggle="modal" data-target="#modal-ticket-detail"><div style='text-align:center;'>Detalle <i class="fa fa-eye"></i></div></button></td>
+      <td><div style='text-align:center;'>Editar <i class="fa fa-pen"></i></div></td>
+    </tr>    
+  </tbody>
+</table>
+</div>
+</div>
+
+
+<!-- 
+<div class="admin-panel container">
+    <div class="clearfix">
+      <h2>Sistema de Tickets</h2>
+    <table class="table">
+      <thead class="thead-dark">
+        <tr>
+          <th scope="col">ID</th>
+          <th scope="col">Costo UF</th>
+          <th scope="col">Costo CLP</th>
+          <th scope="col">Fecha creación</th>
+          <th scope="col">Técnico asociado</th>
+          <th scope="col">Estado</th>
+          <th scope="col">Detalle Servicios</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <th scope="row">1bndsjdsbbdsbndsjnjdskmkldskj</th>
+          <td>12</td>
+          <td>$100.918</td>
+          <td>24-12-2018</td>
+          <td>PEPITO</td>
+          <td>FINISHED</td>
+          <td><button type="button" class="btn" data-toggle="modal" data-target="#modal-ticket-detail"><div style='text-align:center;'>Detalle <i class="fa fa-eye"></i></div></button></td>
+        </tr>
+
+        <tr>
+            <th scope="row">1bndsjdsbbdsbndsjnjdskmkldskj</th>
+            <td>12</td>
+            <td>$100.918</td>
+            <td>24-12-2018</td>
+            <td><button type="button" class="btn btn-outline-secondary" data-toggle="modal" data-target="#modal-self-assign">No asignado</button></td>
+            <td><button type="button" class="btn btn-outline-secondary" data-toggle="modal" data-target="#modal-change-state">FINISHED</button></td>
+            <td><button type="button" class="btn" data-toggle="modal" data-target="#modal-ticket-detail"><div style='text-align:center;'>Detalle <i class="fa fa-eye"></i></div></button></td>
+          </tr>
+      </tbody>
+    </table>
+    </div>
+    </div> -->
+
+
+   
+   
+
+    <app-ticket-detail></app-ticket-detail>

@@ -1,6 +1,7 @@
 import express from "express";
 import path from "path";
 import { DB } from "../db/db";
+import cors from "cors";
 
 // Routes
 import routes from "../routes";
@@ -19,6 +20,7 @@ export default class Server {
     this.app.set("port", <string>process.env.PORT);
     this.app.use(express.json());
     this.app.use(express.urlencoded({ extended: false }));
+    this.app.use(cors());
   }
 
   routes(): void {
