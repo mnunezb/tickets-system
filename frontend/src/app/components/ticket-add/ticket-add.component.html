@@ -4,27 +4,40 @@
 <form>
     <div class="form-group">
       <label for="exampleFormControlSelect1">Técnico encargado</label>
-      <select class="form-control" id="exampleFormControlSelect1">
-        <option value="0" disabled>Seleccione un técnico</option>
-        <option value="01"><strong> Asociar más tarde</strong></option>
-        <option>1</option>
-        <option>2</option>
-        <option>3</option>
-        <option>4</option>
-        <option>5</option>
+      <select class="form-control" id="exampleFormControlSelect1" [(ngModel)]="technical" name="technical" >
+        <option value="1"><strong> Asignar más tarde</strong></option>
+        <option *ngFor="let technical of technicals"  value="{{technical._id}}">{{technical.name}} {{technical.lastName}}</option>
       </select>
     </div>
     <div class="form-group">
       <label for="exampleFormControlSelect2">Servicios</label>
       <br>
       <div class="form-check form-check-inline">
-          <input class="form-check-input" type="checkbox" id="inlineCheckbox1" value="option1">
-          <label class="form-check-label" for="inlineCheckbox1">Pintura</label>
+          <!-- <input class="form-check-input" type="checkbox" id="{{service._id}}" value="{{service._id}}">
+          <label class="form-check-label" for="{{service._id}}">{{service.name}}</label> -->
+          <table class="table table-bordered">
+            <thead>
+              <tr>
+                <th scope="col"></th>
+                <th scope="col">Servicio</th>
+                <th scope="col">UF</th>
+                <th scope="col">Valor CLP</th>
+                <th scope="col">Tipo servicio</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let service of services">
+                <!-- <td scope="row"><input class="form-check-input" type="checkbox" id="{{service._id}}" value="{{service._id}}"></td> -->
+                <td scope="row"><input class="form-check-input" type="checkbox" [value]="service._id" (change)="onCheckChange($event)"></td>
+                <td>{{service.name}}</td>
+                <td>{{service.UF}}</td>
+                <td>${{valueCLPTotal(service.UF)}}</td>
+                <td>{{service.serviceType.name}}</td>
+              </tr>
+            </tbody>
+          </table>
         </div>
-        <div class="form-check form-check-inline">
-          <input class="form-check-input" type="checkbox" id="inlineCheckbox2" value="option2">
-          <label class="form-check-label" for="inlineCheckbox2">Soldadura</label>
-        </div>
-    </div>  
+      </div>  
+      <button type="button" class="btn btn-dark" (click)="clickSave()">Guardar</button>
   </form>
 </div>

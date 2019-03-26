@@ -11,6 +11,7 @@ class RoleRoutes {
 
   config(): void {
     this.router.get("/users", Auth.checkJwt, userController.getUsers);
+    this.router.get("/users/technicals", userController.getTechnicals);
     this.router.post("/user", userController.saveUser);
     this.router.post("/login", userController.signIn);
   }

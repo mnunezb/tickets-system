@@ -16,15 +16,16 @@
     </tr>
   </thead>
   <tbody>
-    <tr *ngFor="let ticket of tickets">
-      <th scope="row">{{ticket._id}}</th>
+    <tr *ngFor="let ticket of tickets; let i = index">
+      <td scope="row">    {{i+1}}</td>
       <td>{{sumUf(ticket)}}</td>
-      <td>$100.918</td>
+      <td>${{getUfCLP(sumUf(ticket))}}</td>
       <td>{{ticket.createdAt}}</td>
-      <td>{{ticket.technical.name}} {{ticket.technical.lastName}}</td>
+      <td *ngIf="ticket.technical">{{ticket.technical.name}} {{ticket.technical.lastName}}</td>
+      <td *ngIf="!ticket.technical"><strong>No Asignado</strong></td>
       <!-- <td>{{ticket.state.name}}</td> -->
-      <td *ngIf="ticket.state.name == 'PENDING'"><button type="button" class="btn btn-outline-secondary" data-toggle="modal" data-target="#modal-change-state">{{ticket.state.name}}</button></td>
-      <td><button type="button" class="btn" data-toggle="modal" data-target="#modal-ticket-detail"><div style='text-align:center;'>Detalle <i class="fa fa-eye"></i></div></button></td>
+      <td *ngIf="ticket.state.name == 'PENDING'"><button type="button" class="btn btn-outline-secondary" data-toggle="modal" data-target="#modal-change-state" (click)= "setState(ticket.state._id)">{{ticket.state.name}}</button></td>
+      <td><button type="button" class="btn" data-toggle="modal" data-target="#modal-ticket-detail" (click)="getTicket(ticket._id)"><div style='text-align:center;'>Detalle <i class="fa fa-eye"></i></div></button></td>
       <td><div style='text-align:center;'>Editar <i class="fa fa-pen"></i></div></td>
     </tr>    
   </tbody>
@@ -76,6 +77,88 @@
 
 
    
+
+
+
    
 
-    <app-ticket-detail></app-ticket-detail>
+<!-- Modal Detalle servicios Ticket -->
+<div class="modal fade" id="modal-ticket-detail" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-lg">
+    <div class="modal-content">
+     
+
+        <div class="form container">
+            <h4>Detalle Servicios</h4>
+            <br>
+        <form>
+            <table class="table" id="table">
+                <thead>
+                  <tr>
+                    <th scope="col">Servicio</th>
+                    <th scope="col">UF</th>
+                    <th scope="col">CLP</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr *ngFor = "let service of services">
+                    <th scope="row">{{service.name}}</th>
+                    <td>{{service.UF}}</td>
+                    <td>${{getUfCLP(service.UF)}}</td>
+                  </tr>
+                </tbody>
+              </table> 
+          </form>
+        </div>
+    </div>
+  </div>
+</div>
+
+
+ <!-- Modal Auto asignar ticket -->
+ <div class="modal fade" id="modal-self-assign" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">¿Deseas Auto asignarte el ticket?</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          Quedarás asociado a este ticket
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Salir</button>
+          <button type="button" class="btn btn-primary">Aceptar</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+  <!-- Modal cambiar estado Ticket -->
+ <div class="modal fade" id="modal-change-state" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">¿Deseas Cambiar el estado?</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+            <div class="form-group">
+                <label for="exampleFormControlSelect1" >Estado Ticket</label>
+                <select class="form-control" id="exampleFormControlSelect1">
+                  <option *ngFor = "let ticketState of ticketStates" value="ticketState._id">{{ticketState.name}}</option>
+                </select>
+              </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Salir</button>
+          <button type="button" class="btn btn-primary">Aceptar</button>
+        </div>
+      </div>
+    </div>
+  </div>

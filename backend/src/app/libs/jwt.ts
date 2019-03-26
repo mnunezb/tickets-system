@@ -42,4 +42,8 @@ export class Auth {
     //Call the next middleware or controller
     next();
   }
+
+  public static decode(token: string){
+    return jwt.decode(token);
+  }
 }

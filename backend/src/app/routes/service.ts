@@ -10,6 +10,7 @@ class ServiceRoutes {
 
   config(): void {
     this.router.get("/services", serviceController.getServices);
+    this.router.get("/uf-value", serviceController.getUfValue);
     this.router.post("/service", serviceController.saveService);
   }
 }

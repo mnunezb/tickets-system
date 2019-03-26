@@ -10,6 +10,7 @@ class TicketRoutes {
 
   config(): void {
     this.router.get("/tickets", ticketController.getTickets);
+    this.router.get("/ticket/:id", ticketController.getTicket);
     this.router.post("/ticket", ticketController.saveTicket);
   }
 }

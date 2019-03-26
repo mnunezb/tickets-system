@@ -11,6 +11,14 @@ class UserController {
       return res.status(500).json({ error: error });
     }
   }
+  public async getTechnicals(req: Request, res: Response) {
+    try {
+      const technicals = await UserModel.find({userRole: '5c96831282f30a0d58ec349b'});
+      res.json({ technicals });
+    } catch (error) {
+      return res.status(500).json({ error: error });
+    }
+  }
 
   public async saveUser(req: Request, res: Response) {
     let user: User = req.body;
