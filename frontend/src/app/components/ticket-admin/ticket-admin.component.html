@@ -1,3 +1,4 @@
+<app-header ></app-header>
 <div class="admin-panel container">
 <div class="clearfix">
   <h2>Sistema de Tickets</h2>
@@ -17,14 +18,14 @@
   </thead>
   <tbody>
     <tr *ngFor="let ticket of tickets; let i = index">
-      <td scope="row">    {{i+1}}</td>
+      <td scope="row">{{i+1}}</td>
       <td>{{sumUf(ticket)}}</td>
       <td>${{getUfCLP(sumUf(ticket))}}</td>
-      <td>{{ticket.createdAt}}</td>
+      <td> {{parseDate(ticket.createdAt)}}</td>
       <td *ngIf="ticket.technical">{{ticket.technical.name}} {{ticket.technical.lastName}}</td>
       <td *ngIf="!ticket.technical"><strong>No Asignado</strong></td>
       <!-- <td>{{ticket.state.name}}</td> -->
-      <td *ngIf="ticket.state.name == 'PENDING'"><button type="button" class="btn btn-outline-secondary" data-toggle="modal" data-target="#modal-change-state" (click)= "setState(ticket.state._id)">{{ticket.state.name}}</button></td>
+      <td><button type="button" class="btn btn-outline-secondary" data-toggle="modal" data-target="#modal-change-state" (click)= "setState(ticket.state._id)">{{ticket.state.name}}</button></td>
       <td><button type="button" class="btn" data-toggle="modal" data-target="#modal-ticket-detail" (click)="getTicket(ticket._id)"><div style='text-align:center;'>Detalle <i class="fa fa-eye"></i></div></button></td>
       <td><div style='text-align:center;'>Editar <i class="fa fa-pen"></i></div></td>
     </tr>    
@@ -150,8 +151,8 @@
         <div class="modal-body">
             <div class="form-group">
                 <label for="exampleFormControlSelect1" >Estado Ticket</label>
-                <select class="form-control" id="exampleFormControlSelect1">
-                  <option *ngFor = "let ticketState of ticketStates" value="ticketState._id">{{ticketState.name}}</option>
+                <select class="form-control" id="exampleFormControlSelect1" [(ngModel)]="selectStateValue" name="selectStateValue">
+                  <option *ngFor = "let ticketState of ticketStates" value="{{ticketState._id}}">{{ticketState.name}}</option>
                 </select>
               </div>
         </div>

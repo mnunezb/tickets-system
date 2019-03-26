@@ -13,7 +13,9 @@ class UserController {
   }
   public async getTechnicals(req: Request, res: Response) {
     try {
-      const technicals = await UserModel.find({userRole: '5c96831282f30a0d58ec349b'});
+      const technicals = await UserModel.find({
+        userRole: "5c96831282f30a0d58ec349b"
+      });
       res.json({ technicals });
     } catch (error) {
       return res.status(500).json({ error: error });
@@ -32,11 +34,13 @@ class UserController {
   public async signIn(req: Request, res: Response) {
     let user: User;
     try {
-      const userBD = await UserModel.findOne({ username: req.body.username });
+      const userBD = await UserModel.findOne({
+        username: req.body.username
+      }).populate({ path: "userRole" });
       if (userBD) {
         user = userBD;
         const token = Auth.createToken(user);
-        res.json({ token });
+        res.json({ user: userBD, token });
       }
     } catch (error) {
       res.status(500).json({ error: error.message });

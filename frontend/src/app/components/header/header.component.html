@@ -11,7 +11,7 @@
     <form class="form-inline my-2 my-lg-0">
       <!-- <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search"> -->
       <label class=" mr-sm-2"><strong>Admin</strong></label>
-      <button class="btn btn-outline-secondary my-2 my-sm-0" type="submit" [routerLink]="[ '/login' ]">Cerrar Sesión</button>
+      <button class="btn btn-outline-secondary my-2 my-sm-0" type="submit" (click)="logout()">Cerrar Sesión</button>
     </form>
   </div>
 </nav>

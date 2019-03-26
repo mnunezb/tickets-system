@@ -1,23 +1,26 @@
-import { Component, OnInit } from "@angular/core";
+import { Component, OnInit, OnChanges } from "@angular/core";
 import { Router } from "@angular/router";
-// import { config } from "dotenv";
+import { AuthService } from "./services/auth.service";
 
 @Component({
   selector: "app-root",
   templateUrl: "./app.component.html",
   styleUrls: ["./app.component.css"]
 })
-export class AppComponent implements OnInit {
-  login: boolean;
+export class AppComponent implements OnInit, OnChanges {
+  user;
 
-  constructor(private router: Router) {
-    // config();
-    this.login = true;
+  constructor(private router: Router, private authService: AuthService) {
+  }
+  ngOnChanges(){
+    this.getUser();
   }
 
   ngOnInit() {
-    if (!this.login) {
-      this.router.navigate(["/login"]);
-    }
+    this.getUser();
+  }
+
+  getUser() {
+    this.user = this.authService.getIdentity();
   }
 }

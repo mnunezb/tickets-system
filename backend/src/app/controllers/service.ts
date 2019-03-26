@@ -5,9 +5,11 @@ import { UFConverter } from "../libs/uf";
 class ServiceController {
   public async getServices(req: Request, res: Response) {
     try {
-      const services = await ServiceModel.find().populate({
-        path: "serviceType"
-      }).sort('serviceType');
+      const services = await ServiceModel.find()
+        .populate({
+          path: "serviceType"
+        })
+        .sort("serviceType");
       res.json({ services });
     } catch (error) {
       return res.status(500).json({ error: error });

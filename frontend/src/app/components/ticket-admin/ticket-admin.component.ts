@@ -5,6 +5,7 @@ import { Service } from "../models/service";
 import { TicketStateService } from "src/app/services/ticket-state.service";
 import { TicketState } from "../models/ticketState";
 import { ServiceService } from "src/app/services/service.service";
+import * as moment from "moment";
 
 @Component({
   selector: "app-ticket-admin",
@@ -16,6 +17,7 @@ export class TicketAdminComponent implements OnInit {
   services: Service[];
 
   ticketStates: TicketState[];
+  ticketSatate: TicketState;
   selectStateValue: string;
   clp: number;
 
@@ -88,6 +90,7 @@ export class TicketAdminComponent implements OnInit {
   setState(id: string) {
     this.selectStateValue = id;
   }
+
   stateSelected(id: string): boolean {
     console.log("object");
     if (id == this.selectStateValue) {
@@ -97,5 +100,9 @@ export class TicketAdminComponent implements OnInit {
     }
     console.log(this.selectStateValue);
     return false;
+  }
+
+  parseDate(date: Date) {
+    return moment(date).format("MMMM Do YYYY, h:mm:ss a");
   }
 }

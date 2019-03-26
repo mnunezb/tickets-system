@@ -6,7 +6,6 @@ class Index {
     config();
     const server = new Server();
     server.start();
-    console.log("Hello rey");
   }
 }
 
