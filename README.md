@@ -21,3 +21,9 @@ Se requiere generar un sistema de tickets para trabajos realizados por una empre
 
 
 <strong>El ejercicio se desarrollo en nodejs y express por el lado del backend y con angular 7 la parte del frontend</strong>
+
+Para probar el proyecto:
+
+-priemro debe instalar las dependencias en el servidor "cd backend" -> npm install , luego hacerlo corres "npm run dev"
+
+-segundo instalar dependencias en frontend "cd frontend" -> npm install , luego hacerlo corres "nf serve"
