@@ -20,4 +20,4 @@ Se requiere generar un sistema de tickets para trabajos realizados por una empre
 •	(opcional) una vez que el ticket queda como paid, el total devuelto debe ser con el valor de la UF del día en que se pagó
 
 
-El ejercicio se desarrollo en nodejs y express por el lado del backend y con angular 7 la parte del frontend
+<strong>El ejercicio se desarrollo en nodejs y express por el lado del backend y con angular 7 la parte del frontend</strong>
