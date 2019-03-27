@@ -1,4 +1,4 @@
-import { Schema, model, Document } from "mongoose";
+import { Document, model, Schema } from 'mongoose';
 
 export interface Ticket extends Document {
   services: string[];
@@ -10,35 +10,35 @@ export interface Ticket extends Document {
   updatedBy: string;
 }
 
-const TicketSchema = new Schema({
+const ticketSchema = new Schema({
   services: [
     {
       type: Schema.Types.ObjectId,
-      ref: "Service"
-    }
+      ref: 'Service',
+    },
   ],
   state: {
     type: Schema.Types.ObjectId,
-    ref: "Ticket_State"
+    ref: 'Ticket_State',
   },
   technical: {
     type: Schema.Types.ObjectId,
-    ref: "User"
+    ref: 'User',
   },
   createdAt: {
-    type: Date
+    type: Date,
   },
   updatedAt: {
-    type: Date
+    type: Date,
   },
   createdBy: {
     type: Schema.Types.ObjectId,
-    ref: "User"
+    ref: 'User',
   },
   updatedBy: {
     type: Schema.Types.ObjectId,
-    ref: "User"
-  }
+    ref: 'User',
+  },
 });
 
-export default model<Ticket>("Ticket", TicketSchema);
+export default model<Ticket>('Ticket', ticketSchema);

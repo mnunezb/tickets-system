@@ -1,17 +1,17 @@
-import { Router } from "express";
-import { serviceController } from "../controllers/service";
+import { Router } from 'express';
+import { serviceController } from '../controllers/service';
 
 class ServiceRoutes {
   public router: Router = Router();
 
-  constructor() {
+  constructor () {
     this.config();
   }
 
-  config(): void {
-    this.router.get("/services", serviceController.getServices);
-    this.router.get("/uf-value", serviceController.getUfValue);
-    this.router.post("/service", serviceController.saveService);
+  public config (): void {
+    this.router.get('/services', serviceController.getServices);
+    this.router.get('/uf-value', serviceController.getUfValue);
+    this.router.post('/service', serviceController.saveService);
   }
 }
 

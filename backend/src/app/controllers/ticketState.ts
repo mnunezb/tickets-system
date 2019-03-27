@@ -1,20 +1,20 @@
-import { Request, Response } from "express";
-import TicketStateModel, { TicketState } from "../models/ticketState";
+import { Request, Response } from 'express';
+import ticketState, { TicketState } from '../models/ticketState';
 
 class TicketStateController {
   public async getTicketStates(req: Request, res: Response) {
     try {
-      const ticketStates = await TicketStateModel.find();
-      res.json({ ticketStates });
+      const ticketStatesDB = await ticketState.find();
+      res.json({ ticketStatesDB });
     } catch (error) {
-      return res.status(500).json({ error: error });
+      return res.status(500).json({ error });
     }
   }
 
   public async saveTicketState(req: Request, res: Response) {
-    let ticketState: TicketState = req.body;
+    const ticketStateInput: TicketState = req.body;
     try {
-      const ticketStateBD = await new TicketStateModel(ticketState);
+      const ticketStateBD = await new ticketState(ticketStateInput);
       ticketStateBD.save();
       res.json({ ticketStateBD });
     } catch (error) {}

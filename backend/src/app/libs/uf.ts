@@ -1,10 +1,8 @@
-import axios from "axios";
-import moment from "moment";
+import axios from 'axios';
+import moment from 'moment';
 
-const URL_UF = "https://mindicador.cl/api/uf/";
+const URL_UF = 'https://mindicador.cl/api/uf/';
 export class UFConverter {
-  constructor() {}
-
   public static async getUFValueToday(): Promise<any> {
     try {
       const res = await axios.get(URL_UF);
@@ -24,12 +22,13 @@ export class UFConverter {
   }
 
   private static converterDate(date: Date): string {
-    var dateParsed = moment(date, "YYYY/MM/DD");
+    const dateParsed = moment(date, 'YYYY/MM/DD');
 
-    var day = dateParsed.format("DD");
-    var month = dateParsed.format("MM");
-    var year = dateParsed.format("YYYY");
+    const day = dateParsed.format('DD');
+    const month = dateParsed.format('MM');
+    const year = dateParsed.format('YYYY');
 
     return `${day}-${month}-${year}`;
   }
+  constructor() {}
 }

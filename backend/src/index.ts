@@ -1,11 +1,11 @@
-import Server from "./app/server/server";
-import { config } from "dotenv";
+import { config } from 'dotenv';
+import server from './app/server/server';
 
 class Index {
   public static main(): void {
     config();
-    const server = new Server();
-    server.start();
+    const s = new server();
+    s.start();
   }
 }
 

@@ -1,14 +1,14 @@
-import { Schema, model, Document } from "mongoose";
+import { Document, model, Schema } from 'mongoose';
 
 export interface ServiceType extends Document {
   name: string;
 }
 
-const ServiceTypeSchema = new Schema({
+const serviceTypeSchema = new Schema({
   name: {
     type: String,
-    required: [true, "The name is required"]
-  }
+    required: [true, 'The name is required'],
+  },
 });
 
-export default model<ServiceType>("Service_Type", ServiceTypeSchema);
+export default model<ServiceType>('Service_Type', serviceTypeSchema);

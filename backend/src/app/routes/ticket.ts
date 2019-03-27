@@ -1,17 +1,17 @@
-import { Router } from "express";
-import { ticketController } from "../controllers/ticket";
+import { Router } from 'express';
+import { ticketController } from '../controllers/ticket';
 
 class TicketRoutes {
   public router: Router = Router();
 
-  constructor() {
+  constructor () {
     this.config();
   }
 
-  config(): void {
-    this.router.get("/tickets", ticketController.getTickets);
-    this.router.get("/ticket/:id", ticketController.getTicket);
-    this.router.post("/ticket", ticketController.saveTicket);
+  public config (): void {
+    this.router.get('/tickets', ticketController.getTickets);
+    this.router.get('/ticket/:id', ticketController.getTicket);
+    this.router.post('/ticket', ticketController.saveTicket);
   }
 }
 

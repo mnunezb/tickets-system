@@ -1,16 +1,16 @@
-import { Router } from "express";
-import { roleController } from "../controllers/role";
+import { Router } from 'express';
+import { roleController } from '../controllers/role';
 
 class RoleRoutes {
   public router: Router = Router();
 
-  constructor() {
+  constructor () {
     this.config();
   }
 
-  config(): void {
-    this.router.get("/roles", roleController.getRoles);
-    this.router.post("/role", roleController.saveRole);
+  public config (): void {
+    this.router.get('/roles', roleController.getRoles);
+    this.router.post('/role', roleController.saveRole);
   }
 }
 

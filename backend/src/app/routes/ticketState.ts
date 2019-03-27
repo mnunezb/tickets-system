@@ -1,16 +1,16 @@
-import { Router } from "express";
-import { ticketStateController } from "../controllers/ticketState";
+import { Router } from 'express';
+import { ticketStateController } from '../controllers/ticketState';
 
 class TicketStateRoutes {
   public router: Router = Router();
 
-  constructor() {
+  constructor () {
     this.config();
   }
 
-  config(): void {
-    this.router.get("/ticket-states", ticketStateController.getTicketStates);
-    this.router.post("/ticket-state", ticketStateController.saveTicketState);
+  public config (): void {
+    this.router.get('/ticket-states', ticketStateController.getTicketStates);
+    this.router.post('/ticket-state', ticketStateController.saveTicketState);
   }
 }
 

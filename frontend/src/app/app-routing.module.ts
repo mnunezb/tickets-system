@@ -9,9 +9,13 @@ const routes: Routes = [
     path: "login",
     component: LoginComponent
   },
+
+
+
+  
   {
     path: "ticket-admin",
-    component: TicketAdminComponent
+    component: TicketAdminComponent 
   },
   {
     path: "ticket-add",
